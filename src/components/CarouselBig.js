@@ -6,7 +6,7 @@ function CarouselBig() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="uno.jpg"
+          src="banner1.png"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -17,7 +17,7 @@ function CarouselBig() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="dos.jpg"
+          src="banner1.png"
           alt="Second slide"
         />
 
@@ -29,7 +29,7 @@ function CarouselBig() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="tres.jpg"
+          src="banner1.png"
           alt="Third slide"
         />
 
