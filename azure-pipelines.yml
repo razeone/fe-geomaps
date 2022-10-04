@@ -14,6 +14,20 @@ steps:
   inputs:
     versionSpec: '16.x'
   displayName: 'Install Node.js'
+- task: ArchiveFiles@2
+  displayName: Archive
+  inputs:
+   rootFolderOrFile: "$(uiBuild)"
+   includeRootFolder: false
+   archiveType: "zip"
+   archiveFile: "$(Build.ArtifactStagingDirectory)/ui-$(Build.BuildId).zip"
+   replaceExistingArchive: true
+- task: PublishBuildArtifacts@1
+  displayName: Publish artifacts
+  inputs:
+    PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+    ArtifactName: "drop"
+    publishLocation: "Container"
 
 - script: |
     npm install
