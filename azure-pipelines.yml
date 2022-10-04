@@ -10,8 +10,8 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  uiSource: "src"
-  uiBuild: "/build"
+  directory: fe-geomaps
+  stage: development
 
 steps:
 - task: NodeTool@0
@@ -25,17 +25,24 @@ steps:
     popd
   displayName: 'Build UI'
 
-- task: ArchiveFiles@2
-  displayName: Archive
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
   inputs:
-   rootFolderOrFile: "$(uiBuild)"
+    SourceFolder: '$(directory)/build'
+    Contents: '**/*'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: ArchiveFiles@2
+  displayName: Archive files
+  inputs:
+   rootFolderOrFile: "$(Build.ArtifactStagingDirectory)"
    includeRootFolder: false
    archiveType: "zip"
-   archiveFile: "$(Build.ArtifactStagingDirectory)/ui-$(Build.BuildId).zip"
+   archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
    replaceExistingArchive: true
 - task: PublishBuildArtifacts@1
   displayName: Publish artifacts
   inputs:
-    PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+    PathtoPublish: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
     ArtifactName: "drop"
     publishLocation: "Container"
