@@ -2,41 +2,41 @@ import Carousel from 'react-bootstrap/Carousel';
 
 function CarouselBig() {
   return (
-    <Carousel>
+    <Carousel variant="dark">
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="uno.jpg"
-          alt="First slide"
+          src="banner3.png"
+          alt="Encuantra todo lo que buscas... - Camello"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>Geo referenciación</h3>
+          <p>Utiliza los servicios de geo referenciación de GeoMaps</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="dos.jpg"
-          alt="Second slide"
+          src="banner1.png"
+          alt="Guarda un lugar y vuelve a él cuantas veces quieras - Combi Volkswagen"
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Lugares Personalizados</h3>
+          <p>Crea y almacena tus propios lugares de relevancia.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="tres.jpg"
-          alt="Third slide"
+          src="banner2.png"
+          alt="Llega a donde tu imaginación desee - Torre Eiffel"
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>Llega lo más alto que puedas...</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            Crea y comparte tus recuerdos asociados a lugares que te cautivaron.
           </p>
         </Carousel.Caption>
       </Carousel.Item>

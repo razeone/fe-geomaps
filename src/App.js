@@ -1,9 +1,9 @@
 import React from "react";
-
 import Navigation from "./components/Navigation";
 import CarouselBig from "./components/CarouselBig";
 
 import './App.css';
+import FeaturesCards from "./components/FeaturesCards";
 
 
 function App() {
@@ -11,6 +11,8 @@ function App() {
     <div className="App">
       <Navigation />
       <CarouselBig />
+      <br />
+      <FeaturesCards />
     </div>
   );
 }
