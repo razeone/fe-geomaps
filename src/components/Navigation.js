@@ -1,4 +1,5 @@
 import React from "react";
+import { Dropdown } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -29,9 +30,17 @@ function Navigation() {
                   <LinkContainer to="/home">
                     <Nav.Link>Mis Lugares</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to="/newPlace" >
-                    <Button variant="success">Nuevo Lugar</Button>
-                  </LinkContainer>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="success">Agregar</Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <LinkContainer to="/new-address">
+                        <Dropdown.Item>Dirección</Dropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/new-place">
+                        <Dropdown.Item>Lugar</Dropdown.Item>
+                      </LinkContainer>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </Nav>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <LinkContainer to="/login">

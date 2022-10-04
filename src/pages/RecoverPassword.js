@@ -1,11 +1,11 @@
 import Navigation from "../components/Navigation";
-import NewPlaceForm from "../components/NewPlaceForm";
+import RecoverPassForm from "../components/RecoverPassForm";
 
 function NewPlace(){
     return (
         <div>
         <Navigation />
-        <NewPlaceForm />
+        <RecoverPassForm />
         </div>
     );
 }
