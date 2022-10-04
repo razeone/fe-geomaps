@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 
 function LoginForm(){
     return(
@@ -15,7 +16,7 @@ function LoginForm(){
         <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Ingrese email" />
+            <Form.Control type="email" placeholder="Ingrese email" required />
             <Form.Text className="text-muted">
             Nunca compartiremos su e-mail con nadie más.
             </Form.Text>
@@ -23,7 +24,7 @@ function LoginForm(){
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control type="password" placeholder="Password" required />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Recuérdame" />
@@ -36,6 +37,9 @@ function LoginForm(){
                 Cancelar
             </Button>
         </LinkContainer>
+        <br />
+        <br />
+        <Link to="/recover-password">Olvidé mi contraseña</Link>
         </Form>
     </Card.Body>
     </Card>

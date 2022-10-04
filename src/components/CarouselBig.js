@@ -2,7 +2,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 function CarouselBig() {
   return (
-    <Carousel>
+    <Carousel variant="dark">
       <Carousel.Item>
         <img
           className="d-block w-100"
@@ -34,9 +34,9 @@ function CarouselBig() {
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>Llega lo más alto que puedas...</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            Crea y comparte tus recuerdos asociados a lugares que te cautivaron.
           </p>
         </Carousel.Caption>
       </Carousel.Item>
