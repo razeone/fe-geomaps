@@ -33,13 +33,14 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: ArchiveFiles@2
-  displayName: Archive files
+  displayName: 'Archive files'
   inputs:
-   rootFolderOrFile: "$(Build.ArtifactStagingDirectory)"
-   includeRootFolder: false
-   archiveType: "zip"
-   archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
-   replaceExistingArchive: true
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    replaceExistingArchive: true
+
 - task: PublishBuildArtifacts@1
   displayName: Publish artifacts
   inputs:
