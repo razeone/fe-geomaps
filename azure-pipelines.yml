@@ -18,6 +18,13 @@ steps:
   inputs:
     versionSpec: '16.x'
   displayName: 'Install Node.js'
+- script: |
+    pushd $(uiSource)
+    npm install
+    npm run build
+    popd
+  displayName: 'Build UI'
+
 - task: ArchiveFiles@2
   displayName: Archive
   inputs:
@@ -32,10 +39,3 @@ steps:
     PathtoPublish: "$(Build.ArtifactStagingDirectory)"
     ArtifactName: "drop"
     publishLocation: "Container"
-
-- script: |
-    pushd $(uiSource)
-    npm install
-    npm run build
-    popd
-  displayName: 'Build UI'
