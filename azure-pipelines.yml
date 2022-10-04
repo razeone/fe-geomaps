@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  uiSource: "src/ui"
+  uiBuild: "$(uiSource)/build"
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -30,6 +34,8 @@ steps:
     publishLocation: "Container"
 
 - script: |
+    pushd $(uiSource)
     npm install
     npm run build
-  displayName: 'npm install and build'
+    popd
+  displayName: 'Build UI'
