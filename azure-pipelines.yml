@@ -21,11 +21,9 @@ steps:
 - script: |
     npm install
   displayName: 'Install NPM'
-  workingDirectory: $(directory)
 - script: |
     set "REACT_APP_STAGE=$(stage)" && npm run build
   displayName: 'Build'
-  workingDirectory: $(directory)
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
