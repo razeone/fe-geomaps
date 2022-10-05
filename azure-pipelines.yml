@@ -25,13 +25,6 @@ steps:
     set "REACT_APP_STAGE=$(stage)" && npm run build
   displayName: 'Build'
 
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-  inputs:
-    SourceFolder: 'build'
-    Contents: '/*'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
 - task: ArchiveFiles@2
   displayName: 'Archive files'
   inputs:
