@@ -29,7 +29,7 @@ function Navigation() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-$"xxl"`}>
-                  GeoMaps Menú
+                  Menú
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>

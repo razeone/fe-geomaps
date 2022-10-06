@@ -12,6 +12,7 @@ const NewAddressForm = () => {
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [country, setCountry] = useState("");
+    const [message, setMessage] = useState("");
 
     const handleChangeCountrySelect = (e) => {
         setCountry(e.target.value);
@@ -28,7 +29,10 @@ const NewAddressForm = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+
+        setShow(true);
+    }
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,6 +57,7 @@ const NewAddressForm = () => {
             });
             let data = await response.json();
             if(data > 0){
+                setMessage("La dirección se ha creado con éxito!");
                 handleShow();
                 setTimeout(() => {
                     window.location.reload();
@@ -60,6 +65,7 @@ const NewAddressForm = () => {
             }
         } catch(err){
             console.log(err);
+            setMessage("Error al guardar la dirección");
         }
     }
 
@@ -67,9 +73,9 @@ const NewAddressForm = () => {
         <Container className="mt-5">
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Mensaje</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>La dirección se ha creado con éxito!</Modal.Body>
+                <Modal.Body>{message}</Modal.Body>
                 <Modal.Footer>
                 </Modal.Footer>
             </Modal>
