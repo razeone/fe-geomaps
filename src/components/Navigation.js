@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { Dropdown } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -9,6 +9,13 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { LinkContainer } from 'react-router-bootstrap';
 
 function Navigation() {
+
+    const [searchString, setSearchString] = useState("");
+    const handleSearch = (e) => {
+        e.preventDefault();
+        alert("Searching for: " + searchString);
+    }
+
   return (
     <>
         <Navbar key="xxl" bg="light" expand="xxl" className="mb-3">
@@ -47,12 +54,14 @@ function Navigation() {
                       <Button>Iniciar Sesión</Button>
                   </LinkContainer>
                 </Nav>
-                <Form className="d-flex">
+                <Form className="d-flex" onSubmit={handleSearch}>
                   <Form.Control
                     type="search"
                     placeholder="Búsqueda..."
                     className="me-2"
                     aria-label="Search"
+                    value={searchString}
+                    onChange={(e) => setSearchString(e.target.value)}
                   />
                   <Button variant="success">Buscar</Button>
                 </Form>

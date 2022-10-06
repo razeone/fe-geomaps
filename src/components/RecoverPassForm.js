@@ -7,6 +7,30 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 
 const RecoverPassForm = () => {
+
+    const BE_ENDPOINT = "http://20.172.227.163/showvars.php";
+    const [email, setEmail] = React.useState("");
+
+    let handleSubmit = async (e) => {
+        e.preventDefault();
+        try{
+            let reqData = {
+                email: email
+            };
+            console.log('Handling submit');
+            console.log(reqData);
+            const response = await fetch(BE_ENDPOINT, {
+                method: 'POST',
+                mode: "cors",
+                body: JSON.stringify(reqData)
+            });
+            const data = await response.json();
+            alert("Response, email: " + data.email);
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     return (
         <Container className="mt-5">
             <Card>
