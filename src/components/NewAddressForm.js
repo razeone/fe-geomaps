@@ -3,7 +3,7 @@ import { Container, Button, Form, Card, Modal } from "react-bootstrap";
 
 
 const NewAddressForm = () => {
-    const BE_POST_ENDPOINT = "http://localhost/geomaps/postAddress.php";
+    const BE_POST_ENDPOINT = "http://20.62.142.96/postAddress.php";
     
     const [firstLine, setFirstLine] = useState("");
     const [secondLine, setSecondLine] = useState("");
@@ -114,7 +114,7 @@ const NewAddressForm = () => {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicAddress2">
                             <Form.Label>Segunda línea</Form.Label>
-                            <Form.Control type="text" value={secondLine} maxLength="255" onChange={(e) => setSecondLine(e.target.value)} placeholder="Información adicional" required />
+                            <Form.Control type="text" value={secondLine} maxLength="255" onChange={(e) => setSecondLine(e.target.value)} placeholder="Información adicional"  />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicColony">
                             <Form.Label>Colonia</Form.Label>

@@ -1,4 +1,4 @@
-const BE_ENDPOINT = "http://localhost/geomaps/getCountries.php";
+const BE_ENDPOINT = "http://20.62.142.96/getCountries.php";
 
 const getCountries = async () => {
     return await fetch(BE_ENDPOINT)

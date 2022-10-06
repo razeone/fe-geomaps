@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import NewPlace from './pages/NewPlace';
 import NewAddress from './pages/NewAddress';
 import RecoverPassword from './pages/RecoverPassword';
+import CountriesView from './pages/CountriesView';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/countries" element={<CountriesView />} />
         <Route path="/new-place" element={<NewPlace />} />
         <Route path="/new-address" element={<NewAddress />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
