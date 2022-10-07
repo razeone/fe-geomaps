@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 
 import { LinkContainer } from 'react-router-bootstrap';
-import getGeoLocation from '../core/GeoLocation';
+import getLocationData from '../core/GeoLocation';
 
 
 const NewPlaceForm = () => {
@@ -141,7 +141,7 @@ const NewPlaceForm = () => {
             Enviar
         </Button>{' '}
         <Button variant="success" type="button" onClick={async () => {
-            let geoLocation = await getGeoLocation();
+            let geoLocation = await getLocationData();
             setLatitude(geoLocation.coords.latitude);
             setLongitude(geoLocation.coords.longitude);
         }}>

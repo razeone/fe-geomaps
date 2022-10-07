@@ -14,6 +14,7 @@ import NewPlace from './pages/NewPlace';
 import NewAddress from './pages/NewAddress';
 import RecoverPassword from './pages/RecoverPassword';
 import CountriesView from './pages/CountriesView';
+import AddressesView from './pages/AddressesView';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/countries" element={<CountriesView />} />
+        <Route path="/addresses" element={<AddressesView />} />
         <Route path="/new-place" element={<NewPlace />} />
         <Route path="/new-address" element={<NewAddress />} />
         <Route path="/recover-password" element={<RecoverPassword />} />

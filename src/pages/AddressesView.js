@@ -1,24 +1,23 @@
 import Navigation from "../components/Navigation";
-import CountriesTable from "../components/CountriesTable";
-import getCountries from "../core/Country";
+import AddressesTable from "../components/AddressesTable";
+import getAddresses from "../core/Address";
 import { useEffect, useState } from "react";
 
-const CountriesView = () => {
-    const [countries, setCountries] = useState([]);
-    
+const AddressesView = () => {
+    const [addresses, setAddresses] = useState([]);
 
     useEffect(() => {
-        getCountries().then((data) => setCountries(data));
+        getAddresses().then((data) => setAddresses(data));
     }, []);
 
     return (
         <div>
             <Navigation />
-            <h1>Países</h1>
+            <h1>Direcciones</h1>
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <CountriesTable countries={countries} />
+                        <AddressesTable addresses={addresses} />
                     </div>
                 </div>
             </div>
@@ -26,5 +25,5 @@ const CountriesView = () => {
         </div>);
   };
   
-export default CountriesView;
+export default AddressesView;
   

@@ -50,6 +50,9 @@ function Navigation() {
                   </Dropdown>
                 </Nav>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
+                <LinkContainer to="/addresses">
+                    <Nav.Link>Direcciones</Nav.Link>
+                  </LinkContainer>
                   <LinkContainer to="/countries">
                     <Nav.Link>Países</Nav.Link>
                   </LinkContainer>

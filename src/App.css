@@ -7,6 +7,12 @@
   pointer-events: none;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -36,3 +42,4 @@
     transform: rotate(360deg);
   }
 }
+
