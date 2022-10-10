@@ -1,7 +1,15 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import { deleteAddressById } from "../core/Address";
 
 const AddressesTable = ({ addresses }) => {
+    const confirmDeleteAddress = (e) =>{
+        console.log(e.target.value);
+        if (window.confirm("Are you sure you want to delete this address?")) {
+            deleteAddressById(e.target.value);
+            window.location.reload();
+        }
+    }
     return (
         <Table striped bordered hover>
             <thead>
@@ -12,6 +20,7 @@ const AddressesTable = ({ addresses }) => {
                 <th>ID Ciudad</th>
                 <th>Colonia</th>
                 <th>Código postal</th>
+                <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +32,7 @@ const AddressesTable = ({ addresses }) => {
                     <td>{address.city_id}</td>
                     <td>{address.colony}</td>
                     <td>{address.postal_code}</td>
+                    <td><Button variant="outline-primary">Editar</Button> <Button variant="outline-danger" value={address.address_id} onClick={confirmDeleteAddress}>Eliminar</Button></td>
                 </tr>
                 ))}
             </tbody>
