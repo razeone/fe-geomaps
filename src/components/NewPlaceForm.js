@@ -7,11 +7,12 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 
 import { LinkContainer } from 'react-router-bootstrap';
-import getGeoLocation from '../core/GeoLocation';
+import getLocationData from '../core/GeoLocation';
 
 
 const NewPlaceForm = () => {
-    const BE_ENDPOINT = "http://localhost:8080/places";
+    //const BE_ENDPOINT = "http://localhost:8080/places";
+    const BE_ENDPOINT = "http://20.172.227.163/showvars.php";
     const HEADERS = {
         'Content-Type': 'application/json'
     };
@@ -27,6 +28,32 @@ const NewPlaceForm = () => {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [message, setMessage] = useState({});
+
+    let handleRequest = async (e) => {
+        e.preventDefault();
+        try{
+            let reqData = {
+                name: name,
+                description: description,
+                phoneNumber: phoneNumber,
+                address: address,
+                serviceTime: serviceTime,
+                latitude: latitude,
+                longitude: longitude
+            };
+            console.log(reqData);
+            const response = await fetch(BE_ENDPOINT, {
+                method: 'POST',
+                mode: "cors",
+                body: JSON.stringify(reqData)
+            });
+            const data = await response.json();
+            alert("Response, name: " + data.name + ", description: " + data.description + ", phoneNumber: " + data.phoneNumber + ", address: " + data.address + ", serviceTime: " + data.serviceTime + ", latitude: " + data.latitude + ", longitude: " + data.longitude);
+            console.log('Handling submit');
+        }catch(err){
+            console.log(err);
+        }
+    }
 
     let handleSubmit = async (e) => {
         e.preventDefault();
@@ -81,7 +108,7 @@ const NewPlaceForm = () => {
             <h1>Nuevo Lugar</h1>
         </Card.Header>
     <Card.Body>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleRequest}>
         <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Nombre</Form.Label>
             <Form.Control type="text" value={name} maxLength="255" onChange={(e) => setName(e.target.value)} placeholder="Ingrese nombre del lugar" required />
@@ -114,7 +141,7 @@ const NewPlaceForm = () => {
             Enviar
         </Button>{' '}
         <Button variant="success" type="button" onClick={async () => {
-            let geoLocation = await getGeoLocation();
+            let geoLocation = await getLocationData();
             setLatitude(geoLocation.coords.latitude);
             setLongitude(geoLocation.coords.longitude);
         }}>

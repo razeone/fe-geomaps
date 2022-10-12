@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { Dropdown } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -8,7 +8,27 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { LinkContainer } from 'react-router-bootstrap';
 
-function Navigation() {
+function Navigation(token) {
+  const [searchString, setSearchString] = useState("");
+  const handleSearch = (e) => {
+      e.preventDefault();
+      alert("TO-DO: Searching for " + searchString);
+  }
+
+  let sessionButton = {
+    location: '/login',
+    title: 'Iniciar Sesión',
+    variant: 'success'
+  }
+
+  if(token){
+    sessionButton = {
+      location: '/logout',
+      title: 'Cerrar Sesión',
+      variant: 'danger'
+    }
+  }
+
   return (
     <>
         <Navbar key="xxl" bg="light" expand="xxl" className="mb-3">
@@ -22,7 +42,7 @@ function Navigation() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-$"xxl"`}>
-                  GeoMaps Menú
+                  Menú
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
@@ -43,18 +63,26 @@ function Navigation() {
                   </Dropdown>
                 </Nav>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <LinkContainer to="/login">
-                      <Button>Iniciar Sesión</Button>
+                <LinkContainer to="/addresses">
+                    <Nav.Link>Direcciones</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/countries">
+                    <Nav.Link>Países</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to={sessionButton.location}>
+                      <Button variant={sessionButton.variant}>{sessionButton.title}</Button>
                   </LinkContainer>
                 </Nav>
-                <Form className="d-flex">
+                <Form className="d-flex" onSubmit={handleSearch}>
                   <Form.Control
                     type="search"
                     placeholder="Búsqueda..."
                     className="me-2"
                     aria-label="Search"
+                    value={searchString}
+                    onChange={(e) => setSearchString(e.target.value)}
                   />
-                  <Button variant="success">Buscar</Button>
+                  <Button variant="success" type="submit">Buscar</Button>
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

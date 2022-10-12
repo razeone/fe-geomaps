@@ -1,36 +1,39 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Container, Button, Form, Card, Modal } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { getAddressById } from "../core/Address";
+import { LinkContainer } from 'react-router-bootstrap';
 
+const EditAddressForm = () => {
+    const BE_PUT_ENDPOINT = "http://20.62.142.96/putAddress.php";
 
-const NewAddressForm = () => {
-    const BE_POST_ENDPOINT = "http://20.62.142.96/postAddress.php";
+    const { addressId } = useParams();
     
     const [firstLine, setFirstLine] = useState("");
     const [secondLine, setSecondLine] = useState("");
     const [colony, setColony] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [country, setCountry] = useState("");
     const [message, setMessage] = useState("");
 
-    const handleChangeCountrySelect = (e) => {
-        setCountry(e.target.value);
-    }
+    useEffect(() => {
+        getAddressById(addressId).then((data) => {
+            setCity(data[0].city_id);
+            setFirstLine(data[0].first_line);
+            setSecondLine(data[0].second_line);
+            setColony(data[0].colony);
+            setPostalCode(data[0].postal_code);
+        });
+    }, [addressId, setFirstLine, setSecondLine, setCity, setPostalCode]);
 
     const handleChangeCitySelect = (e) => {
         setCity(e.target.value);
-    }
-
-    const handleChangeStateSelect = (e) => {
-        setState(e.target.value);
     }
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
-
         setShow(true);
     }
     
@@ -42,11 +45,11 @@ const NewAddressForm = () => {
                 secondLine: secondLine,
                 colony: colony,
                 city: city,
-                state: state,
-                country: country,
-                postalCode: postalCode
+                postalCode: postalCode,
+                addressId: addressId
             };
-            let response = await fetch(BE_POST_ENDPOINT, {
+            console.log(reqData);
+            let response = await fetch(BE_PUT_ENDPOINT, {
                 method: 'POST',
                 mode: "cors",
                 headers: {
@@ -55,8 +58,8 @@ const NewAddressForm = () => {
                 body: "x=" + JSON.stringify(reqData)
             });
             let data = await response.json();
-            if(data > 0){
-                setMessage("La dirección se ha creado con éxito!");
+            if(data !== ""){
+                setMessage("La dirección se ha actualizado con éxito!");
                 handleShow();
                 setTimeout(() => {
                     window.location.reload();
@@ -65,6 +68,8 @@ const NewAddressForm = () => {
         } catch(err){
             console.log(err);
             setMessage("Error al guardar la dirección");
+            handleShow();
+            window.location.reload();
         }
     }
 
@@ -80,28 +85,13 @@ const NewAddressForm = () => {
             </Modal>
             <Card>
                 <Card.Header>
-                    <h1>Nueva Dirección</h1>
+                    <h1>Editar Dirección</h1>
                 </Card.Header>
                 <Card.Body>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlId="formBasicCountry">
-                            <Form.Label>País</Form.Label>
-                            <Form.Select onChange={handleChangeCountrySelect} required>
-                                <option value="">Seleccione un país</option>
-                                <option value="119">México</option>
-                            </Form.Select>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicState">
-                            <Form.Label>Estado</Form.Label>
-                            <Form.Select onChange={handleChangeStateSelect} required>
-                                <option value="">Seleccione un estado</option>
-                                <option value="15">Estado de México</option>
-                                <option value="9">Ciudad de México</option>
-                            </Form.Select>
-                        </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCity">
                             <Form.Label>Ciudad</Form.Label>
-                            <Form.Select onChange={handleChangeCitySelect} required>
+                            <Form.Select value={city} onChange={handleChangeCitySelect} required>
                                 <option value="">Seleccione una ciudad</option>
                                 <option value="15024">Cuautitlán</option>
                                 <option value="9014">Benito Juárez</option>
@@ -126,9 +116,11 @@ const NewAddressForm = () => {
                         <Button variant="primary" type="submit">
                             Enviar
                         </Button>{' '}
-                        <Button variant="secondary" type="button">
-                            Cancelar
-                        </Button>
+                        <LinkContainer to="/addresses">
+                            <Button variant="secondary" type="submit">
+                                Cancelar
+                            </Button>
+                        </LinkContainer>
                     </Form>
                 </Card.Body>
             </Card>
@@ -137,4 +129,4 @@ const NewAddressForm = () => {
     );
 };
 
-export default NewAddressForm;
+export default EditAddressForm;
