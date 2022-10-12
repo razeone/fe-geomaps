@@ -5,11 +5,9 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
+import authenticateUser from "../core/Auth";
 
-function LoginForm(){
-
-    const BE_ENDPOINT = "http://20.172.227.163/showvars.php";
-    //const BE_ENDPOINT = "http://192.168.100.169/showvars.php";
+function LoginForm({ setToken }){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,18 +15,11 @@ function LoginForm(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            console.log('Handling submit');
             let reqData = {
                 email: email,
                 password: password
             };
-            const response = await fetch(BE_ENDPOINT, {
-                method: 'POST',
-                mode: "cors",
-                body: JSON.stringify(reqData)
-            });
-            const data = await response.json();
-            alert("Response, email: " + data.email + ", password: " + data.password);
+            authenticateUser(reqData).then((data) => setToken(data));
         }catch(err){
             console.log(err);
         }

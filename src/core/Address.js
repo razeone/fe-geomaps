@@ -1,4 +1,4 @@
-const BE_ENDPOINT = "http://20.62.142.96/"
+const BE_ENDPOINT = "http://20.62.142.96/";
 const ALL_ADDRESSES = "getAddresses.php";
 const SINGLE_ADDRESS = "getAddressById.php";
 
@@ -20,6 +20,5 @@ const deleteAddressById = async (id) => {
         .then((data) => data);
 }
 
-
-export default getAddresses;
 export { getAddressById, deleteAddressById };
+export default getAddresses;

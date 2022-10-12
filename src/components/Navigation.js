@@ -8,13 +8,26 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { LinkContainer } from 'react-router-bootstrap';
 
-function Navigation() {
+function Navigation(token) {
+  const [searchString, setSearchString] = useState("");
+  const handleSearch = (e) => {
+      e.preventDefault();
+      alert("TO-DO: Searching for " + searchString);
+  }
 
-    const [searchString, setSearchString] = useState("");
-    const handleSearch = (e) => {
-        e.preventDefault();
-        alert("Searching for: " + searchString);
+  let sessionButton = {
+    location: '/login',
+    title: 'Iniciar Sesión',
+    variant: 'success'
+  }
+
+  if(token){
+    sessionButton = {
+      location: '/logout',
+      title: 'Cerrar Sesión',
+      variant: 'danger'
     }
+  }
 
   return (
     <>
@@ -56,8 +69,8 @@ function Navigation() {
                   <LinkContainer to="/countries">
                     <Nav.Link>Países</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to="/login">
-                      <Button>Iniciar Sesión</Button>
+                  <LinkContainer to={sessionButton.location}>
+                      <Button variant={sessionButton.variant}>{sessionButton.title}</Button>
                   </LinkContainer>
                 </Nav>
                 <Form className="d-flex" onSubmit={handleSearch}>
@@ -69,7 +82,7 @@ function Navigation() {
                     value={searchString}
                     onChange={(e) => setSearchString(e.target.value)}
                   />
-                  <Button variant="success">Buscar</Button>
+                  <Button variant="success" type="submit">Buscar</Button>
                 </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
