@@ -12,10 +12,10 @@ function Logout() {
 
     setTimeout(() => {
         window.location.href = "/";
-    }, 1000);
+    }, 2000);
 
     return (
-    <div className='container'>
+    <div className='row'>
         <h1>Logout</h1>
         <img src="http://www.reactiongifs.com/r/2012/06/homer_lurking.gif" alt="logout" />
     </div>

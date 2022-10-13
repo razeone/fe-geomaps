@@ -1,9 +1,10 @@
 import { React, useState } from "react";
 import { Container, Button, Form, Card, Modal } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 
 const NewAddressForm = () => {
-    const BE_POST_ENDPOINT = "http://20.62.142.96/postAddress.php";
+    const BE_POST_ENDPOINT = "http://20.72.160.116/postAddress.php";
     
     const [firstLine, setFirstLine] = useState("");
     const [secondLine, setSecondLine] = useState("");
@@ -126,9 +127,11 @@ const NewAddressForm = () => {
                         <Button variant="primary" type="submit">
                             Enviar
                         </Button>{' '}
-                        <Button variant="secondary" type="button">
-                            Cancelar
-                        </Button>
+                        <LinkContainer to="/">
+                            <Button variant="secondary" type="submit">
+                                Cancelar
+                            </Button>
+                        </LinkContainer>
                     </Form>
                 </Card.Body>
             </Card>
