@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import authenticateUser from "../core/Auth";
 
@@ -51,11 +50,6 @@ function LoginForm({ setToken }){
         <Button variant="primary" type="submit">
             Enviar
         </Button>{' '}
-        <LinkContainer to="/">
-            <Button variant="secondary" type="submit">
-                Cancelar
-            </Button>
-        </LinkContainer>
         <br />
         <br />
         <Link to="/recover-password">Olvidé mi contraseña</Link>

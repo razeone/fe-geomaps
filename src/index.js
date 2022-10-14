@@ -17,12 +17,14 @@ import RecoverPassword from './pages/RecoverPassword';
 import CountriesView from './pages/CountriesView';
 import AddressesView from './pages/AddressesView';
 import EditAddress from './pages/EditAddress';
+import NotFound from './pages/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<App />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />

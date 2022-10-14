@@ -1,4 +1,4 @@
-const BE_ENDPOINT = "http://20.62.142.96/";
+const BE_ENDPOINT = "http://20.72.160.116/";
 const ALL_ADDRESSES = "getAddresses.php";
 const SINGLE_ADDRESS = "getAddressById.php";
 

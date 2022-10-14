@@ -5,7 +5,7 @@ import { getAddressById } from "../core/Address";
 import { LinkContainer } from 'react-router-bootstrap';
 
 const EditAddressForm = () => {
-    const BE_PUT_ENDPOINT = "http://20.62.142.96/putAddress.php";
+    const BE_PUT_ENDPOINT = "http://20.72.160.116/putAddress.php";
 
     const { addressId } = useParams();
     
