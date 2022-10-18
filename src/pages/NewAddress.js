@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import NewAddressForm from "../components/NewAddressForm";
 
@@ -6,6 +7,8 @@ function NewPlace(){
         <div>
         <Navigation />
         <NewAddressForm />
+        <br />
+        <Footer />
         </div>
     );
 }

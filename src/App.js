@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm";
 import FeaturesCards from "./components/FeaturesCards";
 import './App.css';
 import useToken from "./components/useToken";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
       <CarouselBig />
       <br />
       <FeaturesCards />
+      <br />
+      <Footer />
     </div>
   );
 }

@@ -38,10 +38,10 @@ const RecoverPassForm = () => {
                     <h1>Recuperar Contraseña</h1>
                 </Card.Header>
                 <Card.Body>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="Ingrese email" required />
+                            <Form.Control type="email" placeholder="Ingrese email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                             <Form.Text className="text-muted">
                                 Nunca compartiremos su e-mail con nadie más.
                             </Form.Text>
