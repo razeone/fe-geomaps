@@ -11,7 +11,7 @@ import getLocationData from '../core/GeoLocation';
 
 
 const NewPlaceForm = () => {
-    const BE_ENDPOINT = "http://localhost/geomaps/postPlace.php";
+    const BE_ENDPOINT = "http://20.72.160.116/postPlace.php";
     const HEADERS = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -44,13 +44,10 @@ const NewPlaceForm = () => {
             const response = await fetch(BE_ENDPOINT, {
                 method: 'POST',
                 mode: "cors",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
+                headers: HEADERS,
                 body: "x=" + JSON.stringify(reqData)
             });
             const data = await response.json();
-            console.log(data);
             if(data === "0"){
                     setName("");
                     setDescription("");
@@ -59,7 +56,6 @@ const NewPlaceForm = () => {
                     setServiceTime("");
                     setLatitude("");
                     setLongitude("");
-                    console.log(data);
                     setMessage({
                         ...successMessage
                     });
