@@ -7,6 +7,7 @@ function NewPlace(){
         <div>
         <Navigation />
         <NewPlaceForm />
+        <br />
         <Footer />
         </div>
     );
