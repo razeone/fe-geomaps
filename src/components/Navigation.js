@@ -50,6 +50,17 @@ function Navigation(token) {
                   <LinkContainer to="/home">
                     <Nav.Link>Mis Lugares</Nav.Link>
                   </LinkContainer>
+                  <LinkContainer to="/addresses">
+                    <Nav.Link>Direcciones</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/countries">
+                    <Nav.Link>Países</Nav.Link>
+                  </LinkContainer>
+                </Nav>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <LinkContainer to={sessionButton.location}>
+                      <Button variant={sessionButton.variant}>{sessionButton.title}</Button>
+                  </LinkContainer>
                   <Dropdown>
                     <Dropdown.Toggle variant="success">Agregar</Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -61,17 +72,6 @@ function Navigation(token) {
                       </LinkContainer>
                     </Dropdown.Menu>
                   </Dropdown>
-                </Nav>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                <LinkContainer to="/addresses">
-                    <Nav.Link>Direcciones</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/countries">
-                    <Nav.Link>Países</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to={sessionButton.location}>
-                      <Button variant={sessionButton.variant}>{sessionButton.title}</Button>
-                  </LinkContainer>
                 </Nav>
                 <Form className="d-flex" onSubmit={handleSearch}>
                   <Form.Control
