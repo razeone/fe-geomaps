@@ -11,11 +11,10 @@ import getLocationData from '../core/GeoLocation';
 
 
 const NewPlaceForm = () => {
-    //const BE_ENDPOINT = "http://localhost:8080/places";
-    const BE_ENDPOINT = "http://20.172.227.163/showvars.php";
+    const BE_ENDPOINT = "http://localhost/geomaps/postPlace.php";
     const HEADERS = {
-        'Content-Type': 'application/json'
-    };
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
 
     const successMessage = {"text": "Place created successfully", "type": "success"};
     const errorMessage = {"text":"Error happened", "type": "danger"};
@@ -45,60 +44,36 @@ const NewPlaceForm = () => {
             const response = await fetch(BE_ENDPOINT, {
                 method: 'POST',
                 mode: "cors",
-                body: JSON.stringify(reqData)
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: "x=" + JSON.stringify(reqData)
             });
             const data = await response.json();
-            alert("Response, name: " + data.name + ", description: " + data.description + ", phoneNumber: " + data.phoneNumber + ", address: " + data.address + ", serviceTime: " + data.serviceTime + ", latitude: " + data.latitude + ", longitude: " + data.longitude);
+            console.log(data);
+            if(data === "0"){
+                    setName("");
+                    setDescription("");
+                    setPhoneNumber("");
+                    setAddress("");
+                    setServiceTime("");
+                    setLatitude("");
+                    setLongitude("");
+                    console.log(data);
+                    setMessage({
+                        ...successMessage
+                    });
+                } 
+                else {
+                    setMessage({
+                        ...errorMessage
+                    });
+                }
             console.log('Handling submit');
         }catch(err){
             console.log(err);
         }
     }
-
-    let handleSubmit = async (e) => {
-        e.preventDefault();
-        try{
-            let res = await fetch(BE_ENDPOINT, {
-                method: "POST",
-                headers: HEADERS,
-                body: JSON.stringify({
-                    name: name,
-                    description: description,
-                    phoneNumber: phoneNumber,
-                    address: address,
-                    serviceTime: serviceTime,
-                    geometry: {
-                        type: "Point",
-                        coordinates: [latitude, longitude]
-                    }
-                }),
-            });
-
-            let resJson = await res.json();
-            if(res.status === 201){
-                setName("");
-                setDescription("");
-                setPhoneNumber("");
-                setAddress("");
-                setServiceTime("");
-                setLatitude("");
-                setLongitude("");
-                console.log(resJson);
-                setMessage({
-                    ...successMessage
-                });
-            } else {
-                setMessage({
-                    ...errorMessage
-                });
-                console.log(resJson);
-            }
-        }
-        catch(err) {
-            console.log(err);
-        }
-    }
-
     
 
     return(
