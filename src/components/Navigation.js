@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { LinkContainer } from 'react-router-bootstrap';
+import { XLg, CheckLg, Search, PlusLg } from 'react-bootstrap-icons';
 
 function Navigation(token) {
   const [searchString, setSearchString] = useState("");
@@ -17,23 +18,34 @@ function Navigation(token) {
 
   let sessionButton = {
     location: '/login',
-    title: 'Iniciar Sesión',
-    variant: 'success'
+    component: <CheckLg />,
+    variant: 'success',
+    title: 'Iniciar Sesión'
   }
 
   if(token){
     sessionButton = {
       location: '/logout',
-      title: 'Cerrar Sesión',
-      variant: 'danger'
+      component: <XLg />,
+      variant: 'danger',
+      title: 'Cerrar Sesión'
     }
   }
 
   return (
     <>
-        <Navbar key="xxl" bg="light" expand="xxl" className="mb-3">
+        <Navbar key="xxl" bg="dark" variant="dark" expand="xxl" className="mb-3">
           <Container fluid>
-            <Navbar.Brand href="/">GeoMaps</Navbar.Brand>
+            <Navbar.Brand href="/">
+            <img
+              alt=""
+              src="/favicon.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
+              GeoMaps
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-$"xxl"`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-$"xxl"`}
@@ -57,12 +69,10 @@ function Navigation(token) {
                     <Nav.Link>Países</Nav.Link>
                   </LinkContainer>
                 </Nav>
+                
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <LinkContainer to={sessionButton.location}>
-                      <Button variant={sessionButton.variant}>{sessionButton.title}</Button>
-                  </LinkContainer>
                   <Dropdown>
-                    <Dropdown.Toggle variant="success">Agregar</Dropdown.Toggle>
+                    <Dropdown.Toggle title="Agregar..." variant="success"> <PlusLg /> </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <LinkContainer to="/new-address">
                         <Dropdown.Item>Dirección</Dropdown.Item>
@@ -72,18 +82,25 @@ function Navigation(token) {
                       </LinkContainer>
                     </Dropdown.Menu>
                   </Dropdown>
+                  <span className="ms-2">
+                </span>
+                  <Form className="d-flex" onSubmit={handleSearch}>
+                    <Form.Control
+                      type="search"
+                      placeholder="Búsqueda..."
+                      className="me-2"
+                      aria-label="Search"
+                      value={searchString}
+                      onChange={(e) => setSearchString(e.target.value)}
+                    />
+                    <Button title="Buscar" variant="success" type="submit"><Search /></Button>
+                  </Form>
+                  <span className="ms-2">
+                  </span>
+                  <LinkContainer to={sessionButton.location}>
+                      <Button title={sessionButton.title} variant={sessionButton.variant}>{sessionButton.component} </Button>
+                  </LinkContainer>
                 </Nav>
-                <Form className="d-flex" onSubmit={handleSearch}>
-                  <Form.Control
-                    type="search"
-                    placeholder="Búsqueda..."
-                    className="me-2"
-                    aria-label="Search"
-                    value={searchString}
-                    onChange={(e) => setSearchString(e.target.value)}
-                  />
-                  <Button variant="success" type="submit">Buscar</Button>
-                </Form>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

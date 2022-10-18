@@ -1,4 +1,5 @@
 import EditAddressForm from "../components/EditAddressForm";
+import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 
 function EditAddress() {
@@ -6,6 +7,7 @@ function EditAddress() {
         <div>
             <Navigation />
             <EditAddressForm />
+            <Footer />
         </div>
     );
 }

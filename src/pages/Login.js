@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import LoginForm from "../components/LoginForm";
 import Navigation from "../components/Navigation";
 
@@ -6,6 +7,8 @@ function Login() {
     <div>
         <Navigation />
         <LoginForm />
+        <br />
+        <Footer />
     </div>
   );
 }

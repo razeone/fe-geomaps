@@ -2,6 +2,7 @@ import Navigation from "../components/Navigation";
 import CountriesTable from "../components/CountriesTable";
 import getCountries from "../core/Country";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 
 const CountriesView = () => {
     const [countries, setCountries] = useState([]);
@@ -22,7 +23,7 @@ const CountriesView = () => {
                     </div>
                 </div>
             </div>
-            
+            <Footer />
         </div>);
   };
   
