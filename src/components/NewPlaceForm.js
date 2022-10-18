@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,6 +8,8 @@ import Alert from 'react-bootstrap/Alert';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import getLocationData from '../core/GeoLocation';
+import getAddresses from '../core/Address';
+import AddressesSelect from './AddressesSelect';
 
 
 const NewPlaceForm = () => {
@@ -15,6 +17,8 @@ const NewPlaceForm = () => {
     const HEADERS = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
+
+    const [addresses, setAddresses] = useState([]);
 
     const successMessage = {"text": "Place created successfully", "type": "success"};
     const errorMessage = {"text":"Error happened", "type": "danger"};
@@ -27,6 +31,14 @@ const NewPlaceForm = () => {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [message, setMessage] = useState({});
+
+    useEffect(() => {
+        getAddresses().then((data) => setAddresses(data));
+    }, []);
+
+    const handleChangeAddressSelect = (e) => {
+        setAddress(e.target.value);
+    }
 
     let handleRequest = async (e) => {
         e.preventDefault();
@@ -94,7 +106,7 @@ const NewPlaceForm = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicAddress">
             <Form.Label>Dirección</Form.Label>
-            <Form.Control type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Ingrese dirección" />
+            <AddressesSelect addresses={addresses} onChange={handleChangeAddressSelect} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicServiceTime">
             <Form.Label>Horario de Servicio</Form.Label>
