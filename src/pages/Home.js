@@ -1,15 +1,20 @@
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
+import { MapContainer, TileLayer } from 'react-leaflet'
+import "leaflet/dist/leaflet.css";
+
 
 const Home = () => {
     return (
         <div>
             <Navigation />
-            <div className="row">
-                <h1>Home</h1>
-                <p>Bajo construcción</p>
-                <img src="https://media.giphy.com/media/3o7TKsQ8UQ0M3iMqWU/giphy.gif" alt="Bajo construcción" />
-            </div>
+            <h1>Mis Lugares</h1>
+            <MapContainer center={[19.39, -99.13]} zoom={11} scrollWheelZoom={false} id="map">
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+            </MapContainer>
             <br />
             <Footer />
         </div>);
