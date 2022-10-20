@@ -1,4 +1,4 @@
-const BE_ENDPOINT = "http://20.72.160.116/";
+const BE_ENDPOINT = "http://20.72.155.32/api/";
 
 const authenticateUser = async (reqData) => {
     return await fetch(BE_ENDPOINT + "getSessionToken.php", {

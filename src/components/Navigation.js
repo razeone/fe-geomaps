@@ -13,7 +13,7 @@ function Navigation(token) {
   const [searchString, setSearchString] = useState("");
   const handleSearch = (e) => {
       e.preventDefault();
-      alert("TO-DO: Searching for " + searchString);
+      window.location.href = "/search-place/" + searchString;
   }
 
   let sessionButton = {
@@ -82,8 +82,7 @@ function Navigation(token) {
                       </LinkContainer>
                     </Dropdown.Menu>
                   </Dropdown>
-                  <span className="ms-2">
-                </span>
+                  <span className="ms-2"></span>
                   <Form className="d-flex" onSubmit={handleSearch}>
                     <Form.Control
                       type="search"
@@ -92,6 +91,7 @@ function Navigation(token) {
                       aria-label="Search"
                       value={searchString}
                       onChange={(e) => setSearchString(e.target.value)}
+                      required
                     />
                     <Button title="Buscar" variant="success" type="submit"><Search /></Button>
                   </Form>

@@ -1,20 +1,25 @@
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
-import { MapContainer, TileLayer } from 'react-leaflet'
+import getMyPlaces from "../core/Place";
 import "leaflet/dist/leaflet.css";
+import PlacesMap from "../components/PlacesMap";
 
 
 const Home = () => {
+    const [places , setPlaces] = useState([]);
+
+    useEffect(() => {
+        getMyPlaces().then((data) => {
+            setPlaces(data);
+        });
+    }, []);
+
     return (
         <div>
             <Navigation />
             <h1>Mis Lugares</h1>
-            <MapContainer center={[19.39, -99.13]} zoom={11} scrollWheelZoom={false} id="map">
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-            </MapContainer>
+            <PlacesMap places={places} />
             <br />
             <Footer />
         </div>);
