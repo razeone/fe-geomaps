@@ -1,4 +1,4 @@
-const BE_ENDPOINT = "http://20.72.160.116/getStates.php";
+const BE_ENDPOINT = "http://20.72.155.32/api/getStates.php";
 
 const getStates = async () => {
     return await fetch(BE_ENDPOINT)

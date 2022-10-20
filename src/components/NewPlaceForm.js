@@ -20,8 +20,8 @@ const NewPlaceForm = () => {
 
     const [addresses, setAddresses] = useState([]);
 
-    const successMessage = {"text": "Place created successfully", "type": "success"};
-    const errorMessage = {"text":"Error happened", "type": "danger"};
+    const successMessage = {"text": "El lugar se ha creado exitosamente", "type": "success"};
+    const errorMessage = {"text":"Un error sucedió", "type": "danger"};
     
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");

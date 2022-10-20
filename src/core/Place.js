@@ -1,4 +1,4 @@
-const BE_ENDPOINT = 'http://localhost/geomaps/getMyPlaces.php';
+const BE_ENDPOINT = 'http://20.72.155.32/api/getMyPlaces.php';
 
 export const getMyPlaces = async () => {
     return await fetch(BE_ENDPOINT)
@@ -7,13 +7,13 @@ export const getMyPlaces = async () => {
 }
 
 export const searchPlaces = async (searchTerm) => {
-    return await fetch("http://localhost:8000/like/" + searchTerm)
+    return await fetch("http://20.72.155.32/api/search/" + searchTerm)
         .then((res) => res.json())
         .then((data) => data);
 }
 
 export const getPlaceById = async (id) => {
-    return await fetch("http://localhost/geomaps/getPlaceById.php?place_id=" + id)
+    return await fetch("http://20.72.155.32/api/getPlaceById.php?place_id=" + id)
         .then((res) => res.json())
         .then((data) => data);
 }
