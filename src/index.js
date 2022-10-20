@@ -18,6 +18,7 @@ import CountriesView from './pages/CountriesView';
 import AddressesView from './pages/AddressesView';
 import EditAddress from './pages/EditAddress';
 import NotFound from './pages/NotFound';
+import SearchResults from './pages/SearchResults';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -32,6 +33,7 @@ root.render(
         <Route path="/countries" element={<CountriesView />} />
         <Route path="/addresses" element={<AddressesView />} />
         <Route path="/edit-address/:addressId" element={<EditAddress />} />
+        <Route path="search-place/:name" element={<SearchResults />} />
         <Route path="/new-place" element={<NewPlace />} />
         <Route path="/new-address" element={<NewAddress />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
