@@ -5,6 +5,9 @@ import LoginForm from "./components/LoginForm";
 import FeaturesCards from "./components/FeaturesCards";
 import './App.css';
 import useToken from "./components/useToken";
+import Footer from "./components/Footer";
+import PlacesMap from "./components/PlacesMap";
+import 'leaflet/dist/leaflet.css';
 
 function App() {
 
@@ -19,7 +22,10 @@ function App() {
       <Navigation token={token} />
       <CarouselBig />
       <br />
+      <PlacesMap places={[]} />
+      <br />
       <FeaturesCards />
+      <Footer />
     </div>
   );
 }

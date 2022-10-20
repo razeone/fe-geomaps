@@ -2,6 +2,7 @@ import Navigation from "../components/Navigation";
 import AddressesTable from "../components/AddressesTable";
 import getAddresses from "../core/Address";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 
 const AddressesView = () => {
     const [addresses, setAddresses] = useState([]);
@@ -21,7 +22,7 @@ const AddressesView = () => {
                     </div>
                 </div>
             </div>
-            
+            <Footer />
         </div>);
   };
   

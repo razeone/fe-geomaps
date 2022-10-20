@@ -1,4 +1,4 @@
-const BE_ENDPOINT = "http://20.72.160.116/getCities.php";
+const BE_ENDPOINT = "http://20.72.155.32/api/getCities.php";
 
 const getCities = () => {
     return fetch(BE_ENDPOINT)
