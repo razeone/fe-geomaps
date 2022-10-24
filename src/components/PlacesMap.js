@@ -1,9 +1,30 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import {Icon} from 'leaflet'
 
+function LocationMarker() {
+    const [position, setPosition] = useState(null)
+    const map = useMapEvents({
+      click() {
+        map.locate()
+      },
+      locationfound(e) {
+        setPosition(e.latlng)
+        map.flyTo(e.latlng, map.getZoom())
+      },
+    })
+  
+    return position === null ? null : (
+      <Marker position={position} icon={new Icon({iconUrl: markerIconPng})}>
+        <Popup>You are here</Popup>
+      </Marker>
+    )
+}
+
 const PlacesMap = ({ places }) => {
+
     return (
         <MapContainer center={[19.39, -99.13]} zoom={11} scrollWheelZoom={false} id="map">
             <TileLayer
@@ -19,6 +40,7 @@ const PlacesMap = ({ places }) => {
                     </Popup>
                 </Marker>
             ))}
+            <LocationMarker />
         </MapContainer>
     );
 }
