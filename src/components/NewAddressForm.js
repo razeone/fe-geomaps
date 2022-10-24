@@ -1,11 +1,11 @@
 import { React, useState } from "react";
 import { Container, Button, Form, Card, Modal } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { postAddress } from "../core/Address";
 
 
 const NewAddressForm = () => {
-    const BE_POST_ENDPOINT = "http://20.72.160.116/postAddress.php";
-    
+   
     const [firstLine, setFirstLine] = useState("");
     const [secondLine, setSecondLine] = useState("");
     const [colony, setColony] = useState("");
@@ -31,7 +31,6 @@ const NewAddressForm = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
-
         setShow(true);
     }
     
@@ -47,16 +46,8 @@ const NewAddressForm = () => {
                 country: country,
                 postalCode: postalCode
             };
-            let response = await fetch(BE_POST_ENDPOINT, {
-                method: 'POST',
-                mode: "cors",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: "x=" + JSON.stringify(reqData)
-            });
-            let data = await response.json();
-            if(data > 0){
+            let response = await postAddress(reqData);
+            if(response > 0){
                 setMessage("La dirección se ha creado con éxito!");
                 handleShow();
                 setTimeout(() => {

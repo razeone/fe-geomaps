@@ -10,14 +10,10 @@ import { LinkContainer } from 'react-router-bootstrap';
 import getLocationData from '../core/GeoLocation';
 import getAddresses from '../core/Address';
 import AddressesSelect from './AddressesSelect';
+import { postPlace } from '../core/Place';
 
 
 const NewPlaceForm = () => {
-    const BE_ENDPOINT = "http://20.72.160.116/postPlace.php";
-    const HEADERS = {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
     const [addresses, setAddresses] = useState([]);
 
     const successMessage = {"text": "El lugar se ha creado exitosamente", "type": "success"};
@@ -53,14 +49,8 @@ const NewPlaceForm = () => {
                 longitude: longitude
             };
             console.log(reqData);
-            const response = await fetch(BE_ENDPOINT, {
-                method: 'POST',
-                mode: "cors",
-                headers: HEADERS,
-                body: "x=" + JSON.stringify(reqData)
-            });
-            const data = await response.json();
-            if(data === "0"){
+            const response = await postPlace(reqData);
+            if(response === "0"){
                     setName("");
                     setDescription("");
                     setPhoneNumber("");
@@ -83,7 +73,6 @@ const NewPlaceForm = () => {
         }
     }
     
-
     return(
     <Container className="mt-5">
     <Card>

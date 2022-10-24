@@ -1,12 +1,10 @@
 import { React, useState, useEffect } from "react";
 import { Container, Button, Form, Card, Modal } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { getAddressById } from "../core/Address";
+import { getAddressById, putAddress } from "../core/Address";
 import { LinkContainer } from 'react-router-bootstrap';
 
 const EditAddressForm = () => {
-    const BE_PUT_ENDPOINT = "http://20.72.160.116/putAddress.php";
-
     const { addressId } = useParams();
     
     const [firstLine, setFirstLine] = useState("");
@@ -49,16 +47,8 @@ const EditAddressForm = () => {
                 addressId: addressId
             };
             console.log(reqData);
-            let response = await fetch(BE_PUT_ENDPOINT, {
-                method: 'POST',
-                mode: "cors",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: "x=" + JSON.stringify(reqData)
-            });
-            let data = await response.json();
-            if(data !== ""){
+            let response = await putAddress(reqData);
+            if(response !== ""){
                 setMessage("La dirección se ha actualizado con éxito!");
                 handleShow();
                 setTimeout(() => {
@@ -69,7 +59,9 @@ const EditAddressForm = () => {
             console.log(err);
             setMessage("Error al guardar la dirección");
             handleShow();
-            window.location.reload();
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         }
     }
 
