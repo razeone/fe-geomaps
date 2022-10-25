@@ -5,7 +5,7 @@ import {Icon} from 'leaflet'
 
 const PlacesMap = ({ places }) => {
     return (
-        <MapContainer center={[19.39, -99.13]} zoom={11} scrollWheelZoom={false} id="map">
+        <MapContainer center={[19.403331, -99.131470]} zoom={11} scrollWheelZoom={false} id="map">
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
