@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 import { deleteAddressById } from "../core/Address";
+import { Pencil, Trash  } from 'react-bootstrap-icons';
 
 const AddressesTable = ({ addresses }) => {
     const confirmDeleteAddress = (e) =>{
@@ -36,7 +37,10 @@ const AddressesTable = ({ addresses }) => {
                     <td>{address.city_id}</td>
                     <td>{address.colony}</td>
                     <td>{address.postal_code}</td>
-                    <td><Button variant="outline-primary" value={address.address_id} onClick={editThisAddress}>Editar</Button> <Button variant="outline-danger" value={address.address_id} onClick={confirmDeleteAddress}>Eliminar</Button></td>
+                    <td>
+                        <Button variant="outline-primary" title="Editar..." value={address.address_id} onClick={editThisAddress}><Pencil /></Button>{' '}
+                        <Button variant="outline-danger" title="Eliminar..." value={address.address_id} onClick={confirmDeleteAddress}><Trash /></Button>
+                    </td>
                 </tr>
                 ))}
             </tbody>
