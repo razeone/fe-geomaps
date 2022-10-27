@@ -1,18 +1,15 @@
 import React from 'react';
 import * as d3 from 'd3';
 
-class BarChart extends React.Component {
-    componentDidMount() {
-        this.drawChart();
-    }
+const BarChart = ({ data, width, height }) => {
+    const id = 'root';
 
-    drawChart() {
-        const data = this.props.data;
+    const drawChart = () => {
         const svg = d3.select("body").append("svg")
-        .attr("width", this.props.width)
-        .attr("height", this.props.height);
+        .attr("width", width)
+        .attr("height", height);
 
-        const h = this.props.height;
+        const h = height;
 
         svg.selectAll("rect")
         .data(data)
@@ -32,12 +29,14 @@ class BarChart extends React.Component {
         .attr("x", (d, i) => i * 70)
         .attr("y", (d, i) => h - (10 * d) - 3)
 
-    //selection.attr(“property”, (d, i) => {})
+        //selection.attr(“property”, (d, i) => {})
     }
 
-    render() {
-        return  <div id={"#" + this.props.id}></div>
-    }
+    drawChart();
+
+    return  (
+        <div id={"#" + id}></div>
+    );
 
 }
 

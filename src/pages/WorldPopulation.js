@@ -1,20 +1,21 @@
-import {React, Component} from 'react';
+import {React} from 'react';
 import Navigation from '../components/Navigation';
 import BarChart from '../components/BarChart';
 
-class WorldPopulation extends Component {
-    state = {
+const WorldPopulation = () => {
+    let state = {
         data: [12, 5, 6, 6, 9, 10],
         width: 700,
         height: 500,
         id: "root"
     };
         
-    render() {
-            return (
-                <BarChart data={this.state.data} width={this.state.width} height={this.state.height} />
-            );
-          }
+    return (
+        <div>
+            <Navigation />
+            <BarChart data={state.data} width={state.width} height={state.height} />
+        </div>
+    );
 }
 
 export default WorldPopulation
