@@ -1,18 +1,8 @@
 import {useEffect, useState} from 'react'
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
-import { LabelList, BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Label } from 'recharts';
 import { getTopCountriesPopulation } from '../core/Country';
-/*
-
-<LineChart width={400} height={400} data={data}>
-                    <Line type="monotone" dataKey="poblacion" stroke="#8884d8" />
-                    <CartesianGrid stroke="#ccc" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                </LineChart>
-*/
 
 const WorldPopulation = () => {
     const [population, setPopulation] = useState([]);
@@ -24,7 +14,7 @@ const WorldPopulation = () => {
     }, []);
     
     const reducedPopulation = population.reduce((acc, item) => {
-        acc.push({name: item.name, population: item.value, year: item.year});
+        acc.push({name: item.name, population: item.value/10000, year: item.year});
         return acc;
     }, []);
 
@@ -47,10 +37,13 @@ const WorldPopulation = () => {
                     >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis />
+                    <YAxis>
+                        <Label angle={270} position="left" style={{ textAnchor: 'middle' }}>
+                            Población (escala 1:10000)
+                        </Label>
+                    </YAxis>
                     <Tooltip />
                     <Bar dataKey="population" fill="#8884d8">
-                        <LabelList dataKey="population" position="top" />
                     </Bar>
                 </BarChart>
             </div>
