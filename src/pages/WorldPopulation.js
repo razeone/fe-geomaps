@@ -1,33 +1,47 @@
+import {useEffect, useState} from 'react'
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
-import { ResponsiveContainer, BarChart, Bar, Legend, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-const data = [{name: 'China', poblacion: 400, pv: 2400, amt: 2400}, {name: 'México', poblacion: 200, pv: 2400, amt: 2400}, {name: 'Russia', poblacion: 800, pv: 2400, amt: 2400}] 
+import { LabelList, BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { getTopCountriesPopulation } from '../core/Country';
+/*
 
-
-const WorldPopulation = () => {
-    return (
-        <div>
-            <Navigation />
-            <h1>World Population</h1>
-            <div className="container">
-                <h3>World Population</h3>
-                <LineChart width={400} height={400} data={data}>
+<LineChart width={400} height={400} data={data}>
                     <Line type="monotone" dataKey="poblacion" stroke="#8884d8" />
                     <CartesianGrid stroke="#ccc" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
                 </LineChart>
-            </div>
-            
-                    <BarChart
-                    width={500}
-                    height={300}
-                    data={data}
+*/
+
+const WorldPopulation = () => {
+    const [population, setPopulation] = useState([]);
+
+    useEffect(() => {
+        getTopCountriesPopulation().then((data) => {
+            setPopulation(data);
+        });
+    }, []);
+    
+    const reducedPopulation = population.reduce((acc, item) => {
+        acc.push({name: item.name, population: item.value, year: item.year});
+        return acc;
+    }, []);
+
+    return (
+        <div>
+            <Navigation />
+            <h1>10 Países más poblados en 2022</h1>
+            <div className="container">
+                <h3>Habitantes</h3>
+                <BarChart
+                    width={1000}
+                    height={700}
+                    data={reducedPopulation}
                     margin={{
                         top: 5,
-                        right: 30,
-                        left: 20,
+                        right: 40,
+                        left: 40,
                         bottom: 5,
                     }}
                     >
@@ -35,11 +49,11 @@ const WorldPopulation = () => {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Legend />
-                    <Bar dataKey="pv" fill="#8884d8" />
-                    <Bar dataKey="poblacion" fill="#82ca9d" />
-                    </BarChart>
-                
+                    <Bar dataKey="population" fill="#8884d8">
+                        <LabelList dataKey="population" position="top" />
+                    </Bar>
+                </BarChart>
+            </div>
             <br />
             <Footer />
         </div>
