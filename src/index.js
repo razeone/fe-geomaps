@@ -19,6 +19,7 @@ import AddressesView from './pages/AddressesView';
 import EditAddress from './pages/EditAddress';
 import NotFound from './pages/NotFound';
 import SearchResults from './pages/SearchResults';
+import WorldPopulation from './pages/WorldPopulation';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -37,6 +38,7 @@ root.render(
         <Route path="/new-place" element={<NewPlace />} />
         <Route path="/new-address" element={<NewAddress />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
+        <Route path="/world-population" element={<WorldPopulation />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
