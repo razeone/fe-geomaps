@@ -68,8 +68,8 @@ function Navigation(token) {
                   <LinkContainer to="/countries">
                     <Nav.Link>Países</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to="/world-population">
-                    <Nav.Link>Población</Nav.Link>
+                  <LinkContainer to="/top-world-population">
+                    <Nav.Link>Top 10 Población</Nav.Link>
                   </LinkContainer>
                 </Nav>
                 

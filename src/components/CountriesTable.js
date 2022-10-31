@@ -1,5 +1,6 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 const CountriesTable = ({ countries }) => {
     return (
@@ -14,7 +15,11 @@ const CountriesTable = ({ countries }) => {
             <tbody>
                 {countries.map((country) => (
                     <tr key={country.name}>
-                        <td>{country.name}</td>
+                        <td>
+                            <LinkContainer to={`/country-population/${country.name}`}>
+                                <Button variant="link">{country.name}</Button>
+                            </LinkContainer>
+                        </td>
                         <td>{country.country_code}</td>
                         <td>{country.phone_code}</td>
                     </tr>
