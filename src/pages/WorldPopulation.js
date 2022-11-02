@@ -26,8 +26,8 @@ const WorldPopulation = () => {
             <div className="container">
                 <h3>Habitantes</h3>
                 <BarChart
-                    width={1000}
-                    height={900}
+                    width={1200}
+                    height={600}
                     data={reducedPopulation}
                     margin={{
                         top: 5,

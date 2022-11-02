@@ -3,29 +3,22 @@ import { Button, Card } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import { LinkContainer } from 'react-router-bootstrap';
-
+const BE_ENDPOINT = "http://20.72.155.32/api/recover-password/";
 
 
 const RecoverPassForm = () => {
-
-    const BE_ENDPOINT = "http://20.172.227.163/showvars.php";
     const [email, setEmail] = React.useState("");
 
     let handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            let reqData = {
-                email: email
-            };
             console.log('Handling submit');
-            console.log(reqData);
-            const response = await fetch(BE_ENDPOINT, {
-                method: 'POST',
+            const response = await fetch(BE_ENDPOINT + email, {
+                method: 'GET',
                 mode: "cors",
-                body: JSON.stringify(reqData)
             });
             const data = await response.json();
-            alert("Response, email: " + data.email);
+            alert(data.message);
         }catch(err){
             console.log(err);
         }

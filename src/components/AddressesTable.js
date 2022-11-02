@@ -1,18 +1,23 @@
-import React from "react";
+import { React} from "react";
 import { Table, Button } from "react-bootstrap";
 import { deleteAddressById } from "../core/Address";
 import { Pencil, Trash  } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
 
 const AddressesTable = ({ addresses }) => {
+    const navigate = useNavigate();
+
     const confirmDeleteAddress = (e) =>{
         if (window.confirm("¿Está usted seguro de querer borrar esta dirección?")) {
-            deleteAddressById(e.target.value);
-            window.location.reload();
+            deleteAddressById(e);
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         }
     }
 
     const editThisAddress = (e) => {
-        window.location.href = "/edit-address/" + e.target.value;
+        navigate("/edit-address/" + e);
     }
 
     return (
@@ -38,8 +43,8 @@ const AddressesTable = ({ addresses }) => {
                     <td>{address.colony}</td>
                     <td>{address.postal_code}</td>
                     <td>
-                        <Button variant="outline-primary" title="Editar..." value={address.address_id} onClick={editThisAddress}><Pencil /></Button>{' '}
-                        <Button variant="outline-danger" title="Eliminar..." value={address.address_id} onClick={confirmDeleteAddress}><Trash /></Button>
+                        <Button variant="outline-primary" title="Editar..." onClick={() => editThisAddress(address.address_id)}><Pencil /></Button>{' '}
+                        <Button variant="outline-danger" title="Eliminar..." onClick={() => confirmDeleteAddress(address.address_id)}><Trash /></Button>
                     </td>
                 </tr>
                 ))}
