@@ -1,4 +1,4 @@
-const BE_ENDPOINT = 'http://20.72.155.32';
+const BE_ENDPOINT = "https://api.geomaps.raze.mx";
 const HEADERS = {
     'Content-Type': 'application/x-www-form-urlencoded'
 };

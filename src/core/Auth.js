@@ -1,7 +1,7 @@
-const BE_ENDPOINT = "http://20.72.155.32/api/";
+const BE_ENDPOINT = "https://api.geomaps.raze.mx/api/";
 
 const authenticateUser = async (reqData) => {
-    return await fetch(BE_ENDPOINT + "getSessionToken.php", {
+    return fetch(BE_ENDPOINT + "getSessionToken.php", {
         method: 'POST',
         mode: "cors",
         headers: {
@@ -13,7 +13,7 @@ const authenticateUser = async (reqData) => {
 }
 
 const logoutUser = async (reqData) => {
-    return await fetch(BE_ENDPOINT + "logout.php", {
+    return fetch(BE_ENDPOINT + "logout.php", {
         method: 'POST',
         mode: "cors",
         headers: {
