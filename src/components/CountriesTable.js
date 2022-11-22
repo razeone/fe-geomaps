@@ -5,8 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 const CountriesTable = ({ countries }) => {
     // Function to filter the countries based on the search input
     const [search, setSearch] = useState("");
-    let countriesFullSet = countries;
-    const filteredCountries = countriesFullSet.filter((country) => {
+    const filteredCountries = countries.filter((country) => {
         return country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
 
