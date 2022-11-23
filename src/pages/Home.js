@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import getMyPlaces from "../core/Place";
+import { Button, Container, Row } from "react-bootstrap";
 import "leaflet/dist/leaflet.css";
 import PlacesMap from "../components/PlacesMap";
 
@@ -16,13 +17,20 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
+        <>
             <Navigation />
             <h1>Mis Lugares</h1>
-            <PlacesMap places={places} />
-            <br />
+            <Container>
+                <Row>
+                    <Button variant="success" href="/new-place">Agregar lugar</Button>
+                </Row>
+                <br />
+                <Row>
+                    <PlacesMap places={places} />
+                </Row>
+            </Container>
             <Footer />
-        </div>);
+        </>);
   };
   
 export default Home;

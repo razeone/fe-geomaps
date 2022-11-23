@@ -1,8 +1,6 @@
 import { Form } from "react-bootstrap";
 
 const CitiesSelect = (cities) => {
-    console.log("CitiesSelect");
-    console.log(cities);
    
     return (
         <Form.Select aria-label="Default select example">

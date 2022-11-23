@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { LinkContainer } from 'react-router-bootstrap';
-import { XLg, CheckLg, Search, PlusLg } from 'react-bootstrap-icons';
+import { XLg, CheckLg, Search, PlusLg, Globe } from 'react-bootstrap-icons';
 
 function Navigation(token) {
   const [searchString, setSearchString] = useState("");
@@ -65,15 +65,22 @@ function Navigation(token) {
                   <LinkContainer to="/addresses">
                     <Nav.Link>Direcciones</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to="/countries">
-                    <Nav.Link>Países</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/top-world-population">
-                    <Nav.Link>Top 10 Población</Nav.Link>
-                  </LinkContainer>
                 </Nav>
                 
                 <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Dropdown>
+                    <Dropdown.Toggle title="Mundo..." variant="success"> <Globe /> </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <LinkContainer to="/countries">
+                        <Dropdown.Item>Países</Dropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/top-world-population">
+                        <Dropdown.Item>Top 10 Población Mundial</Dropdown.Item>
+                      </LinkContainer>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <span className="ms-2">
+                  </span>
                   <Dropdown>
                     <Dropdown.Toggle title="Agregar..." variant="success"> <PlusLg /> </Dropdown.Toggle>
                     <Dropdown.Menu>
