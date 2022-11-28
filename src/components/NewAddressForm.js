@@ -3,7 +3,9 @@ import { Container, Button, Form, Card, Modal } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { postAddress } from "../core/Address";
 import CountriesSelect from "./CountriesSelect";
+import StatesSelect from "./StatesSelect";
 import getCountries from "../core/Country";
+import getStates from "../core/State";
 
 
 const NewAddressForm = () => {
@@ -17,6 +19,7 @@ const NewAddressForm = () => {
     const [country, setCountry] = useState("");
     const [message, setMessage] = useState("");
     const [countries, setCountries] = useState([]);
+    const [states, setStates] = useState([]);
 
     const handleChangeCountrySelect = (e) => {
         setCountry(e.target.value);
@@ -25,15 +28,20 @@ const NewAddressForm = () => {
 
     useEffect(() => {
         getCountries().then((data) => setCountries(data));
+        getStates().then((data) => setStates(data));
     }, []);
+
+
 
     const handleChangeCitySelect = (e) => {
         setCity(e.target.value);
     }
 
     const handleChangeStateSelect = (e) => {
+        console.log('here');
         setState(e.target.value);
     }
+
 
     
 
@@ -90,11 +98,7 @@ const NewAddressForm = () => {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicState">
                             <Form.Label>Estado</Form.Label>
-                            <Form.Select onChange={handleChangeStateSelect} required>
-                                <option value="">Seleccione un estado</option>
-                                <option value="15">Estado de México</option>
-                                <option value="9">Ciudad de México</option>
-                            </Form.Select>
+                            <StatesSelect states={states} onChange={handleChangeStateSelect}  />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCity">
                             <Form.Label>Ciudad</Form.Label>

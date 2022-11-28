@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import { LinkContainer } from 'react-router-bootstrap';
-const BE_ENDPOINT = "http://20.72.155.32/api/recover-password/";
+const BE_ENDPOINT = "https://api.geomaps.raze.mx/api/recover-password/";
 
 
 const RecoverPassForm = () => {
@@ -18,7 +18,8 @@ const RecoverPassForm = () => {
                 mode: "cors",
             });
             const data = await response.json();
-            alert(data.message);
+            console.log(data.message);
+            alert("Revise su E-mail para continuar con el proceso de recuperación de contraseña");
         }catch(err){
             console.log(err);
         }

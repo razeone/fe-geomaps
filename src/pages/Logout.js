@@ -18,7 +18,7 @@ function Logout() {
     return (
     <div className='row'>
         <h1>Logout</h1>
-        <img src="http://www.reactiongifs.com/r/2012/06/homer_lurking.gif" alt="logout" />
+        <img height="600" width="600" src="http://www.reactiongifs.com/r/2012/06/homer_lurking.gif" alt="logout" />
         <Footer />
     </div>
     );

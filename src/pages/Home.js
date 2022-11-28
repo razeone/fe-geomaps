@@ -29,6 +29,7 @@ const Home = () => {
                     <PlacesMap places={places} />
                 </Row>
             </Container>
+            <br />
             <Footer />
         </>);
   };
