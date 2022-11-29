@@ -1,3 +1,4 @@
+import {React } from "react";
 import Navigation from "../components/Navigation";
 import { Container, Row, Button } from "react-bootstrap";
 import AddressesTable from "../components/AddressesTable";

@@ -1,6 +1,8 @@
-import Footer from "../components/Footer";
-import LoginForm from "../components/LoginForm";
-import Navigation from "../components/Navigation";
+import {React, lazy} from "react";
+
+const Navigation = lazy(() => import('../components/Navigation'));
+const LoginForm = lazy(() => import('../components/LoginForm'));
+const Footer = lazy(() => import('../components/Footer'));
 
 function Login() {
   return (

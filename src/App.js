@@ -1,13 +1,15 @@
-import {React} from "react";
-import Navigation from "./components/Navigation";
-import CarouselBig from "./components/CarouselBig";
-import LoginForm from "./components/LoginForm";
-import FeaturesCards from "./components/FeaturesCards";
-import './App.css';
+import {React, lazy } from "react";
+// const AvatarComponent = lazy(() => import('./AvatarComponent'));
 import useToken from "./components/useToken";
-import Footer from "./components/Footer";
-import PlacesMap from "./components/PlacesMap";
 import 'leaflet/dist/leaflet.css';
+import './App.css';
+
+const Navigation = lazy(() => import('./components/Navigation'));
+const CarouselBig = lazy(() => import('./components/CarouselBig'));
+const PlacesMap = lazy(() => import('./components/PlacesMap'));
+const FeaturesCards = lazy(() => import('./components/FeaturesCards'));
+const Footer = lazy(() => import('./components/Footer'));
+const LoginForm = lazy(() => import('./components/LoginForm'));
 
 function App() {
 
